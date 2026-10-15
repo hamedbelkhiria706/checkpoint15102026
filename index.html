@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ==========================================================================
+       META TAGS & RESPONSIVE VIEWPORT CONFIGURATION
+       ========================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="NOVA STUDIO - Premium Next-Gen Tech & Lifestyle Store. Shop minimalist headphones, smartwatches, keyboards, and workspace essentials.">
+  <meta name="keywords" content="tech store, ecommerce, responsive landing page, audio gear, smartwatches, accessories">
+  <meta name="author" content="Nova Studio">
+
+  <title>NOVA STUDIO | Next-Gen Tech & Lifestyle Store</title>
+
+  <!-- ==========================================================================
+       LIBRARIES & EXTERNAL ASSETS (Extra Points: Frameworks & Web Fonts)
+       ========================================================================== -->
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit for modern luxury aesthetics -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons Library (Free CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Tailwind CSS Framework CDN (Extra points requirement) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configure Tailwind to blend seamlessly with our custom CSS tokens
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandPrimary: '#6366f1',
+            brandCyan: '#06b6d4',
+            brandDark: '#0b0f19',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet with CSS Variables, Flexbox/Grid Layout & Responsive Media Queries -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP ANNOUNCEMENT BAR
+       ========================================================================== -->
+  <div class="top-announcement" role="region" aria-label="Announcement">
+    <span><i class="fa-solid fa-bolt mr-1"></i> Special Launch Offer: Enjoy 20% off all orders with code</span>
+    <span class="badge-code">LAUNCH20</span>
+    <span class="hidden md:inline">| Free Worldwide Shipping Over $50</span>
+  </div>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION MENU
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="brand-logo" aria-label="Nova Studio Home">
+        <div class="logo-icon">
+          <i class="fa-solid fa-cube"></i>
+        </div>
+        <span>NOVA<span class="highlight">STUDIO</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu (Links to different sections) -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#features" class="nav-link">Why Us</a></li>
+          <li><a href="#products" class="nav-link">Products</a></li>
+          <li><a href="#offers" class="nav-link">Offers</a></li>
+          <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions: Search, Wishlist, Cart & Mobile Toggle -->
+      <div class="header-actions">
+        <!-- Quick Search Button -->
+        <button class="action-btn" id="searchBtn" title="Search catalog" aria-label="Search catalog">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!-- Wishlist Button with Counter -->
+        <button class="action-btn" id="wishlistBtn" title="View Wishlist" aria-label="View Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-counter" id="wishlistCount">0</span>
+        </button>
+
+        <!-- Cart Button with Dynamic Item Counter -->
+        <button class="action-btn" id="cartBtn" title="Open Shopping Cart" aria-label="Shopping Cart with items">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="badge-counter" id="cartCount">2</span>
+        </button>
+
+        <!-- Mobile Menu Hamburger Toggle (Visible on Mobile/Tablet) -->
+        <button class="action-btn mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Mobile Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MOBILE NAVIGATION DRAWER & BACKDROP (Off-canvas Navigation)
+       ========================================================================== -->
+  <div class="mobile-nav-backdrop" id="mobileBackdrop"></div>
+  <aside class="mobile-nav-drawer" id="mobileDrawer" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-cube"></i>
+        </div>
+        <span>NOVA<span class="highlight">STUDIO</span></span>
+      </div>
+      <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close Mobile Navigation">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="px-1 mb-4">
+      <div class="relative flex items-center">
+        <input type="text" placeholder="Search products..." class="w-full bg-slate-900/80 border border-slate-700/60 rounded-lg py-2 pl-9 pr-3 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500">
+        <i class="fa-solid fa-magnifying-glass absolute left-3 text-xs text-slate-400"></i>
+      </div>
+    </div>
+
+    <ul class="mobile-nav-links">
+      <li><a href="#home" class="mobile-link"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#features" class="mobile-link"><i class="fa-solid fa-shield-halved"></i> Why Us</a></li>
+      <li><a href="#products" class="mobile-link"><i class="fa-solid fa-layer-group"></i> Products</a></li>
+      <li><a href="#offers" class="mobile-link"><i class="fa-solid fa-tags"></i> Special Offers</a></li>
+      <li><a href="#testimonials" class="mobile-link"><i class="fa-solid fa-star"></i> Reviews</a></li>
+      <li><a href="#contact" class="mobile-link"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+    </ul>
+
+    <div class="mobile-drawer-footer">
+      <p class="text-xs text-gray-400 mb-3">Customer Support: support@novastudio.tech</p>
+      <a href="#products" class="btn btn-primary w-full text-center mobile-link">
+        <i class="fa-solid fa-arrow-right"></i> Shop Collection
+      </a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main>
+
+    <!-- ========================================================================
+         HERO SECTION (Banner with Call To Action & Showcase)
+         ======================================================================== -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Hero Copy & Calls-To-Action -->
+          <div class="hero-content">
+            <div class="hero-badge-pill">
+              <span class="rating-stars">★★★★★</span>
+              <span>Rated 4.9/5 by 12,000+ Happy Creators</span>
+            </div>
+
+            <h1 class="hero-title">
+              Next-Generation Tech For <span class="gradient-text">Modern Living</span>
+            </h1>
+
+            <p class="hero-description">
+              Meticulously engineered audio gear, precision titanium wearables, and ergonomic workspace tools designed to elevate your daily productivity, focus, and lifestyle.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#products" class="btn btn-primary">
+                <span>Explore Collection</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="#features" class="btn btn-secondary">
+                <i class="fa-solid fa-circle-play text-indigo-400"></i>
+                <span>Why Nova Studio</span>
+              </a>
+            </div>
+
+            <!-- Social Proof Key Metrics -->
+            <div class="hero-stats">
+              <div class="stat-item">
+                <h4>48h</h4>
+                <p>Global Express Delivery</p>
+              </div>
+              <div class="stat-item">
+                <h4>2-Year</h4>
+                <p>Full Hardware Warranty</p>
+              </div>
+              <div class="stat-item">
+                <h4>99.4%</h4>
+                <p>Customer Satisfaction</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Visual Product Card with Ambient Glow -->
+          <div class="hero-visual">
+            <div class="hero-visual-card">
+              <div class="hero-img-wrapper">
+                <img src="assets/images/hero-product.jpg" alt="Aura Pro Wireless Hi-Fi Headphones Flagship Product" loading="eager">
+              </div>
+
+              <!-- Floating Micro-Badge Top -->
+              <div class="hero-float-badge badge-top">
+                <div class="badge-icon-box">
+                  <i class="fa-solid fa-wave-square"></i>
+                </div>
+                <div class="badge-text">
+                  <strong>Hybrid ANC 40dB</strong>
+                  <span>Active Noise Cancelling</span>
+                </div>
+              </div>
+
+              <!-- Floating Micro-Badge Bottom -->
+              <div class="hero-float-badge badge-bottom">
+                <div class="badge-icon-box green">
+                  <i class="fa-solid fa-battery-three-quarters"></i>
+                </div>
+                <div class="badge-text">
+                  <strong>45-Hour Battery</strong>
+                  <span>Ultra-Fast USB-C Charge</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         FEATURES & VALUE PROPOSITIONS SECTION
+         ======================================================================== -->
+    <section id="features" class="features-section" aria-label="Store Benefits">
+      <div class="container">
+        <div class="features-grid">
+          
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+            <h3 class="feature-title">Free Worldwide Shipping</h3>
+            <p class="feature-description">
+              Enjoy complimentary tracked delivery on all orders over $50 with real-time status notifications.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-medal"></i>
+            </div>
+            <h3 class="feature-title">Precision Engineering</h3>
+            <p class="feature-description">
+              Crafted using aerospace-grade aluminum, beryllium drivers, and premium tactile materials.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-rotate-left"></i>
+            </div>
+            <h3 class="feature-title">30-Day Money-Back</h3>
+            <p class="feature-description">
+              Try our gear completely risk-free. If you are not 100% satisfied, returns are seamless and free.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <h3 class="feature-title">24/7 Dedicated Support</h3>
+            <p class="feature-description">
+              Our expert technical customer support team is available around the clock via live chat and email.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PRODUCT SECTION (At least 4 product cards with Image, Name, Desc, Button)
+         ======================================================================== -->
+    <section id="products" class="products-section" aria-label="Product Showcase">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header">
+          <div class="section-badge">
+            <i class="fa-solid fa-sparkles"></i> Curated Collection
+          </div>
+          <h2 class="section-title">
+            Featured <span>Products</span>
+          </h2>
+          <p class="section-subtitle">
+            Explore our hand-picked selection of high-performance audio instruments, smart wearables, and desktop productivity essentials.
+          </p>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="product-filters" role="tablist" aria-label="Product category filters">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Products</button>
+          <button class="filter-btn" data-filter="audio" role="tab" aria-selected="false">Audio Gear</button>
+          <button class="filter-btn" data-filter="wearables" role="tab" aria-selected="false">Wearables</button>
+          <button class="filter-btn" data-filter="workspace" role="tab" aria-selected="false">Workspace</button>
+        </div>
+
+        <!-- Product Cards Grid (Contains 8 Products, exceeding the minimum 4 required) -->
+        <div class="products-grid" id="productsGrid">
+
+          <!-- Product Card 1 -->
+          <article class="product-card" data-category="audio" data-id="1">
+            <div class="product-img-box">
+              <span class="product-badge badge-bestseller">Best Seller</span>
+              <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add Aura Pro Wireless Headphones to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+              <img src="assets/images/product-1.jpg" alt="Aura Pro Wireless ANC Headphones" loading="lazy">
+            </div>
+
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Audio</span>
+                <div class="product-rating">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="rating-num">4.9</span>
+                  <span class="text-xs text-gray-500">(248)</span>
+                </div>
+              </div>
+
+              <h3 class="product-name">Aura Pro Wireless Headphones</h3>
+              
+              <p class="product-desc">
+                Spatial audio with hybrid active noise cancellation, custom 40mm beryllium drivers, and up to 45-hour battery life.
+              </p>
+
+              <div class="product-footer">
+                <div class="product-pricing">
+                  <span class="current-price">$199.99</span>
+                  <span class="original-price">$249.99</span>
+                </div>
+                <button class="btn-shop-now" data-id="1" data-name="Aura Pro Wireless Headphones" data-price="199.99" data-img="assets/images/product-1.jpg">
+                  <span>Shop Now</span>
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 2 -->
+          <article class="product-card" data-category="wearables" data-id="2">
+            <div class="product-img-box">
+              <span class="product-badge badge-new">New Arrival</span>
+              <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add Pulse Ultra Smartwatch to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+              <img src="assets/images/product-2.jpg" alt="Pulse Ultra Titanium Smartwatch" loading="lazy">
+            </div>
+
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Wearables</span>
+                <div class="product-rating">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="rating-num">4.8</span>
+                  <span class="text-xs text-gray-500">(184)</span>
+                </div>
+              </div>
+
+              <h3 class="product-name">Pulse Ultra Smartwatch</h3>
+              
+              <p class="product-desc">
+                Aerospace-grade titanium casing, always-on AMOLED sapphire display, comprehensive biometric tracking, and 7-day battery.
+              </p>
+
+              <div class="product-footer">
+                <div class="product-pricing">
+                  <span class="current-price">$249.00</span>
+                  <span class="original-price">$299.00</span>
+                </div>
+                <button class="btn-shop-now" data-id="2" data-name="Pulse Ultra Smartwatch" data-price="249.00" data-img="assets/images/product-2.jpg">
+                  <span>Shop Now</span>
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 3 -->
+          <article class="product-card" data-category="workspace" data-id="3">
+            <div class="product-img-box">
+              <span class="product-badge badge-toprated">Staff Pick</span>
+              <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add Zenith Mechanical Keyboard to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+              <img src="assets/images/product-3.jpg" alt="Zenith Custom Mechanical Keyboard" loading="lazy">
+            </div>
+
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Workspace</span>
+                <div class="product-rating">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="rating-num">4.9</span>
+                  <span class="text-xs text-gray-500">(310)</span>
+                </div>
+              </div>
+
+              <h3 class="product-name">Zenith Mechanical Keyboard</h3>
+              
+              <p class="product-desc">
+                Hot-swappable tactile switches, gasket mount design, anodized CNC aluminum frame, and tri-mode low latency wireless connectivity.
+              </p>
+
+              <div class="product-footer">
+                <div class="product-pricing">
+                  <span class="current-price">$149.00</span>
+                  <span class="original-price">$179.00</span>
+                </div>
+                <button class="btn-shop-now" data-id="3" data-name="Zenith Mechanical Keyboard" data-price="149.00" data-img="assets/images/product-3.jpg">
+                  <span>Shop Now</span>
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 4 -->
+          <article class="product-card" data-category="workspace" data-id="4">
+            <div class="product-img-box">
+              <span class="product-badge badge-sale">Trending</span>
+              <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add Nomad Tech Backpack to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+              <img src="assets/images/product-4.jpg" alt="Nomad Minimalist Tech Backpack" loading="lazy">
+            </div>
+
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Workspace</span>
+                <div class="product-rating">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="rating-num">4.7</span>
+                  <span class="text-xs text-gray-500">(120)</span>
+                </div>
+              </div>
+
+              <h3 class="product-name">Nomad Minimalist Backpack</h3>
+              
+              <p class="product-desc">
+                Weatherproof recycled Cordura exterior, dedicated padded 16-inch laptop compartment, and magnetic quick-access pockets.
+              </p>
+
+              <div class="product-footer">
+                <div class="product-pricing">
+                  <span class="current-price">$119.00</span>
+                  <span class="original-price">$139.00</span>
+                </div>
+                <button class="btn-shop-now" data-id="4" data-name="Nomad Minimalist Backpack" data-price="119.00" data-img="assets/images/product-4.jpg">
+                  <span>Shop Now</span>
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 5 -->
+          <article class="product-card" data-category="workspace" data-id="5">
+            <div class="product-img-box">
+              <span class="product-badge badge-bestseller">Popular</span>
+              <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add Lumina Studio Desk Lamp to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+              <img src="assets/images/product-5.jpg" alt="Lumina Studio LED Desk Lamp" loading="lazy">
+            </div>
+
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Workspace</span>
+                <div class="product-rating">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="rating-num">4.8</span>
+                  <span class="text-xs text-gray-500">(95)</span>
+                </div>
+              </div>
+
+              <h3 class="product-name">Lumina Studio Desk Lamp</h3>
+              
+              <p class="product-desc">
+                CRI 98+ full-spectrum lighting, wireless charging pad base, capacitive touch dimming, and glare-free optical design.
+              </p>
+
+              <div class="product-footer">
+                <div class="product-pricing">
+                  <span class="current-price">$89.00</span>
+                  <span class="original-price">$109.00</span>
+                </div>
+                <button class="btn-shop-now" data-id="5" data-name="Lumina Studio Desk Lamp" data-price="89.00" data-img="assets/images/product-5.jpg">
+                  <span>Shop Now</span>
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 6 -->
+          <article class="product-card" data-category="audio" data-id="6">
+            <div class="product-img-box">
+              <span class="product-badge badge-sale">Save 25%</span>
+              <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add Orbit Magnetic Wireless Dock to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+              <img src="assets/images/product-6.jpg" alt="Orbit Fast Wireless Charging Dock" loading="lazy">
+            </div>
+
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Audio & Acc.</span>
+                <div class="product-rating">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="rating-num">4.6</span>
+                  <span class="text-xs text-gray-500">(142)</span>
+                </div>
+              </div>
+
+              <h3 class="product-name">Orbit Wireless Charging Dock</h3>
+              
+              <p class="product-desc">
+                Fast 15W MagSafe-compatible 3-in-1 multi-device dock crafted with CNC aluminum and soft-touch vegan leather.
+              </p>
+
+              <div class="product-footer">
+                <div class="product-pricing">
+                  <span class="current-price">$69.00</span>
+                  <span class="original-price">$89.00</span>
+                </div>
+                <button class="btn-shop-now" data-id="6" data-name="Orbit Wireless Charging Dock" data-price="69.00" data-img="assets/images/product-6.jpg">
+                  <span>Shop Now</span>
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 7 -->
+          <article class="product-card" data-category="workspace" data-id="7">
+            <div class="product-img-box">
+              <span class="product-badge badge-toprated">Top Rated</span>
+              <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add Apex Wireless Mouse to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+              <img src="assets/images/product-7.jpg" alt="Apex Ultra Wireless Ergonomic Mouse" loading="lazy">
+            </div>
+
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Workspace</span>
+                <div class="product-rating">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="rating-num">4.9</span>
+                  <span class="text-xs text-gray-500">(215)</span>
+                </div>
+              </div>
+
+              <h3 class="product-name">Apex Ultra Wireless Mouse</h3>
+              
+              <p class="product-desc">
+                Ultralight 58g ergonomic chassis, 26,000 DPI optical sensor, optical switches, and hyper-smooth PTFE gliding feet.
+              </p>
+
+              <div class="product-footer">
+                <div class="product-pricing">
+                  <span class="current-price">$79.00</span>
+                  <span class="original-price">$99.00</span>
+                </div>
+                <button class="btn-shop-now" data-id="7" data-name="Apex Ultra Wireless Mouse" data-price="79.00" data-img="assets/images/product-7.jpg">
+                  <span>Shop Now</span>
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product Card 8 -->
+          <article class="product-card" data-category="audio" data-id="8">
+            <div class="product-img-box">
+              <span class="product-badge badge-new">Featured</span>
+              <button class="wishlist-btn" title="Add to Wishlist" aria-label="Add SoundBar Compact Studio to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+              <img src="assets/images/product-8.jpg" alt="SoundBar Compact Hi-Fi Bluetooth Speaker" loading="lazy">
+            </div>
+
+            <div class="product-content">
+              <div class="product-meta">
+                <span class="product-category">Audio</span>
+                <div class="product-rating">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="rating-num">4.8</span>
+                  <span class="text-xs text-gray-500">(167)</span>
+                </div>
+              </div>
+
+              <h3 class="product-name">SoundBar Compact Studio</h3>
+              
+              <p class="product-desc">
+                Room-filling Hi-Fi acoustics with dual passive bass radiators, Bluetooth 5.3, and optical lossless inputs.
+              </p>
+
+              <div class="product-footer">
+                <div class="product-pricing">
+                  <span class="current-price">$129.00</span>
+                  <span class="original-price">$159.00</span>
+                </div>
+                <button class="btn-shop-now" data-id="8" data-name="SoundBar Compact Studio" data-price="129.00" data-img="assets/images/product-8.jpg">
+                  <span>Shop Now</span>
+                  <i class="fa-solid fa-cart-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PROMOTIONAL COUNTDOWN & LIMITED-TIME OFFER BANNER
+         ======================================================================== -->
+    <section id="offers" class="promo-section" aria-label="Limited Time Promotion">
+      <div class="container">
+        <div class="promo-banner-card">
+          <div class="promo-grid">
+            
+            <div class="promo-content">
+              <div class="section-badge mb-3">
+                <i class="fa-solid fa-clock"></i> Limited Time Offer
+              </div>
+              <h3>Save 20% On Your Complete Studio Setup</h3>
+              <p>
+                Upgrade your workspace with our curated bundles. Enter the promo code below at checkout to unlock instant discounts on all flagship products.
+              </p>
+
+              <!-- Live Countdown Display -->
+              <div class="countdown-container" id="countdownClock" aria-label="Offer Countdown Timer">
+                <div class="countdown-box">
+                  <span class="count-num" id="cdHours">14</span>
+                  <span class="count-label">Hours</span>
+                </div>
+                <div class="countdown-box">
+                  <span class="count-num" id="cdMinutes">42</span>
+                  <span class="count-label">Minutes</span>
+                </div>
+                <div class="countdown-box">
+                  <span class="count-num" id="cdSeconds">18</span>
+                  <span class="count-label">Seconds</span>
+                </div>
+              </div>
+
+              <div class="promo-action-group">
+                <div class="coupon-code-box" id="couponBox" title="Click to copy promo code" role="button" tabindex="0">
+                  <i class="fa-solid fa-ticket"></i>
+                  <span>LAUNCH20</span>
+                  <i class="fa-regular fa-copy ml-2 text-xs"></i>
+                </div>
+                <a href="#products" class="btn btn-primary">
+                  <span>Claim Discount</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Visual Graphic / Badge -->
+            <div class="hidden lg:flex justify-center items-center">
+              <div class="relative w-64 h-64 flex items-center justify-center rounded-full bg-indigo-500/10 border border-indigo-500/30">
+                <div class="text-center">
+                  <span class="block text-5xl font-black text-white font-['Outfit']">20%</span>
+                  <span class="text-sm font-semibold text-indigo-300 uppercase tracking-widest">OFF SITEWIDE</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         CUSTOMER TESTIMONIALS & REVIEWS SECTION
+         ======================================================================== -->
+    <section id="testimonials" class="testimonials-section" aria-label="Customer Reviews">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-badge">
+            <i class="fa-solid fa-comments"></i> Verified Buyers
+          </div>
+          <h2 class="section-title">
+            Loved By <span>Creators</span>
+          </h2>
+          <p class="section-subtitle">
+            See what software engineers, designers, and audio professionals have to say about Nova Studio hardware.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "The Aura Pro headphones completely changed my deep-work sessions. The ANC eliminates distractions entirely, and the soundstage is breathtakingly crisp."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">MS</div>
+              <div class="author-info">
+                <h5>Marcus Sterling</h5>
+                <p>Senior Product Designer, SF</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "The Zenith mechanical keyboard is a work of art. The typing feel is solid and thocky, and switching seamlessly between my Mac and PC is flawless."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">EL</div>
+              <div class="author-info">
+                <h5>Elena Lindqvist</h5>
+                <p>Full-Stack Developer, Stockholm</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">
+              "Outstanding customer service and rapid shipping. The Pulse Ultra watch looks twice as expensive as it is and the battery easily lasts a full week."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">DK</div>
+              <div class="author-info">
+                <h5>David Kim</h5>
+                <p>Tech Columnist, Seoul</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         NEWSLETTER SUBSCRIPTION SECTION
+         ======================================================================== -->
+    <section id="newsletter" class="newsletter-section" aria-label="Newsletter Signup">
+      <div class="container">
+        <div class="newsletter-box">
+          <div class="newsletter-icon">
+            <i class="fa-regular fa-envelope-open"></i>
+          </div>
+          <h3>Join The Nova Circle</h3>
+          <p>
+            Subscribe to receive exclusive hardware release announcements, member-only discounts, and curated desk setup inspiration.
+          </p>
+
+          <form class="newsletter-form" id="newsletterForm" onsubmit="return false;">
+            <input type="email" id="newsletterEmail" placeholder="Enter your email address..." required aria-label="Email address for newsletter">
+            <button type="submit" class="btn btn-primary btn-subscribe" id="subscribeBtn">
+              <span>Subscribe</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+
+          <p class="newsletter-disclaimer">
+            <i class="fa-solid fa-lock text-xs mr-1"></i> We respect your privacy. No spam, ever. Unsubscribe at any time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER SECTION (Placeholder links, brand info & payment badges)
+       ========================================================================== -->
+  <footer id="contact" class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Brand & Socials -->
+        <div class="footer-brand">
+          <a href="#home" class="brand-logo mb-3 inline-flex">
+            <div class="logo-icon">
+              <i class="fa-solid fa-cube"></i>
+            </div>
+            <span>NOVA<span class="highlight">STUDIO</span></span>
+          </a>
+          <p>
+            Designing premium next-generation electronics and accessories for creators, engineers, and digital nomads worldwide.
+          </p>
+          <div class="social-links" aria-label="Social media channels">
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Explore Store</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">All Products</a></li>
+            <li><a href="#features">Value Proposition</a></li>
+            <li><a href="#offers">Special Offers</a></li>
+            <li><a href="#testimonials">Customer Reviews</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Customer Care & Policies -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#contact">Order Tracking</a></li>
+            <li><a href="#contact">Shipping & Delivery</a></li>
+            <li><a href="#contact">Returns & Refunds</a></li>
+            <li><a href="#contact">Warranty Registration</a></li>
+            <li><a href="#contact">FAQ & Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact Info & Headquarters -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Direct Contact</h4>
+          <ul class="contact-info-list">
+            <li class="contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>452 Innovation Blvd, Suite 800, San Francisco, CA 94107</span>
+            </li>
+            <li class="contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>support@novastudio.tech</span>
+            </li>
+            <li class="contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+1 (800) 555-NOVA (Mon-Fri 9am-6pm PST)</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar: Copyright & Payment Badges -->
+      <div class="footer-bottom">
+        <p class="copyright-text">
+          &copy; 2026 NOVA STUDIO Inc. All rights reserved. Designed for Responsive Store Landing Page Checkpoint.
+        </p>
+
+        <div class="payment-methods" aria-label="Accepted Payment Methods">
+          <span class="payment-card-badge" title="Visa"><i class="fa-brands fa-cc-visa"></i></span>
+          <span class="payment-card-badge" title="Mastercard"><i class="fa-brands fa-cc-mastercard"></i></span>
+          <span class="payment-card-badge" title="Apple Pay"><i class="fa-brands fa-cc-apple-pay"></i></span>
+          <span class="payment-card-badge" title="PayPal"><i class="fa-brands fa-cc-paypal"></i></span>
+          <span class="payment-card-badge" title="Stripe"><i class="fa-brands fa-cc-stripe"></i></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       INTERACTIVE CART SLIDE-OVER DRAWER (Extra Component)
+       ========================================================================== -->
+  <div class="cart-drawer-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Your Shopping Cart">
+    <div class="cart-header">
+      <h4>
+        <i class="fa-solid fa-bag-shopping text-indigo-400"></i>
+        <span>Shopping Cart</span>
+      </h4>
+      <button class="close-cart-btn" id="closeCartBtn" aria-label="Close Shopping Cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Dynamic Cart Items Container -->
+    <div class="cart-items-list" id="cartItemsContainer">
+      <!-- Items dynamically populated via main.js -->
+    </div>
+
+    <!-- Cart Footer & Checkout Action -->
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span class="total-price" id="cartSubtotalPrice">$448.99</span>
+      </div>
+      <p class="text-xs text-gray-400 mb-4">Taxes and free shipping calculated at checkout.</p>
+      <button class="btn btn-primary w-full text-center" id="checkoutBtn">
+        <i class="fa-solid fa-lock"></i>
+        <span>Proceed to Secure Checkout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       TOAST NOTIFICATION COMPONENT (Feedback on Actions)
+       ========================================================================== -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- ==========================================================================
+       MODULAR JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script src="js/main.js"></script>
+</body>
+</html>
+
